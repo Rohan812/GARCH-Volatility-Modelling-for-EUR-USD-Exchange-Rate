@@ -20,7 +20,8 @@ We use the **Yahoo Finance** library to retrieve data for the EUR/USD exchange r
 data = yf.download('EURUSD=X', start='2019-01-01', end='2023-12-31')
 data.head(10)
 ```
-![Data Head](https://github.com/user-attachments/assets/1552198a-fb36-49ae-b26e-ae7e97c55113)
+
+![Data Head](https://github.com/Rohan812/GARCH-Volatility-Modelling-for-EUR-USD-Exchange-Rate/blob/main/Data%20Head.png)
 
 # Daily Log Returns Calculation
 
@@ -33,13 +34,13 @@ log_returns = df['Daily Log Returns'].dropna()
 log_returns
 ```
 
-![Log Returns](https://github.com/user-attachments/assets/5a0696e1-cb57-4117-85d0-b1158d4db4ea)
+![Log Returns](https://github.com/Rohan812/GARCH-Volatility-Modelling-for-EUR-USD-Exchange-Rate/blob/main/Log%20Returns.png)
 
 # Interactive Log Returns vs. Date
 
 This section presents an interactive graph of daily log returns plotted against the date.
 
-![Log Returns EUR-USD Exch rate](https://github.com/user-attachments/assets/7d87d6d1-8673-4ceb-93bc-91d4ebb54c15)
+![Log Returns EUR-USD Exch rate](https://github.com/Rohan812/GARCH-Volatility-Modelling-for-EUR-USD-Exchange-Rate/blob/main/Log%20Returns%20EUR-USD%20Exch%20rate.png)
 
 # Distribution of Log Returns
 
@@ -49,13 +50,13 @@ This section includes histograms to visualize the distribution of daily log retu
 
 This histogram displays the log returns with a normal distribution line traced on the histogram.
 
-![Histogram of Log Returns (Normal Dist Fitted)](https://github.com/user-attachments/assets/b371c480-a36e-40dd-8bae-cb008515e534)
+![Histogram of Log Returns (Normal Dist Fitted)](https://github.com/Rohan812/GARCH-Volatility-Modelling-for-EUR-USD-Exchange-Rate/blob/main/Histogram%20of%20Log%20Returns%20(Normal%20Dist%20Fitted).png)
 
 ## Histogram with T-Distribution Line
 
 This histogram shows the log returns with a t-distribution line traced on the histogram.
 
-![Histogram of Log Returns (t-Dist Fitted)](https://github.com/user-attachments/assets/218f9d2f-e321-40aa-9b50-0f39d1352f92)
+![Histogram of Log Returns (t-Dist Fitted)](https://github.com/Rohan812/GARCH-Volatility-Modelling-for-EUR-USD-Exchange-Rate/blob/main/Histogram%20of%20Log%20Returns%20(t-Dist%20Fitted).png)
 
 # Q-Q Plots of Log Returns
 
@@ -65,13 +66,13 @@ This section includes Q-Q plots to assess the distribution of daily log returns.
 
 This Q-Q plot displays the log returns against the theoretical quantiles of the normal distribution.
 
-![Q-Q Plot for checking Normal Distribution](https://github.com/user-attachments/assets/04d95d39-bb0d-403e-9400-3659b0377853)
+![Q-Q Plot for checking Normal Distribution](https://github.com/Rohan812/GARCH-Volatility-Modelling-for-EUR-USD-Exchange-Rate/blob/main/Q-Q%20Plot%20for%20checking%20Normal%20Distribution.png)
 
 ## Q-Q Plot with T Distribution
 
 This Q-Q plot displays the log returns against the theoretical quantiles of the t-distribution.
 
-![Q-Q Plot for checking t-Distribution](https://github.com/user-attachments/assets/ea20f84c-6356-4d37-8af5-a9c246306b9b)
+![Q-Q Plot for checking t-Distribution](https://github.com/Rohan812/GARCH-Volatility-Modelling-for-EUR-USD-Exchange-Rate/blob/main/Q-Q%20Plot%20for%20checking%20t-Distribution.png)
 
 # GARCH Model
 
@@ -81,7 +82,7 @@ The Generalized Autoregressive Conditional Heteroskedasticity (GARCH) model is a
 
 The GARCH(p, q) model is defined by the following equations:
 
-![Untitled design](https://github.com/user-attachments/assets/b309bfc7-ed51-41d1-8295-f1b8d641a4b6)
+![GARCH(p,q) Equation](https://github.com/Rohan812/GARCH-Volatility-Modelling-for-EUR-USD-Exchange-Rate/blob/main/GARCH(p%2Cq)%20Equation.png)
 
 
 ### Model Fitting and Evaluation (AIC & BIC)
@@ -92,7 +93,7 @@ To determine the optimal GARCH model for our data, we tested various combination
 
 To identify the optimal GARCH model, we evaluated various combinations of \( p \) (GARCH terms) and \( q \) (ARCH terms) using the Akaike Information Criterion (AIC). The AIC penalizes model complexity to prevent overfitting, with lower values indicating a better fit. A line plot of AIC values across different combinations of \( p \) and \( q \) provides insight into the model that best balances accuracy with simplicity.
 
-![newplot (3)](https://github.com/user-attachments/assets/2fd0dbb1-0576-4945-8219-875d3a35f9d7)
+![AIC values](https://github.com/Rohan812/GARCH-Volatility-Modelling-for-EUR-USD-Exchange-Rate/blob/main/AIC%20values%20values.png)
 
 From the AIC plot, it is evident that the GARCH(1,1) model yields the minimum AIC value, suggesting that it is the optimal model among the configurations tested.
 
@@ -100,13 +101,13 @@ From the AIC plot, it is evident that the GARCH(1,1) model yields the minimum AI
 
 Similarly, we calculated the Bayesian Information Criterion (BIC) for each \( p \) and \( q \) combination to further guide model selection. The BIC imposes a stronger penalty for model complexity than AIC, and thus may favor simpler models. By analyzing the line plot of BIC values, we can determine the combination of \( p \) and \( q \) that yields the most parsimonious model.
 
-![newplot (4)](https://github.com/user-attachments/assets/9ac3f589-cfdf-4c9c-9c81-c87773794a2d)
+![BIC values](https://github.com/Rohan812/GARCH-Volatility-Modelling-for-EUR-USD-Exchange-Rate/blob/main/BIC%20values%20values.png)
 
 The BIC plot shows that the GARCH(1,1) model also achieves the lowest BIC value, confirming it as the best fit for our data.
 
 ## GARCH(1,1) Model Equation
 
-![Untitled design (1)](https://github.com/user-attachments/assets/c16f87d1-48a6-43cb-bc02-7a922685b3cd)
+![GARCH(1,1) Equation](https://github.com/Rohan812/GARCH-Volatility-Modelling-for-EUR-USD-Exchange-Rate/blob/main/GARCH(1%2C1)%20Equation.png)
 
 ## Likelihood Ratio Test for Model Comparison
 
@@ -134,7 +135,8 @@ Since the GARCH(1,1) model is deemed adequate, it suggests that the GARCH(1,3) m
 
 For this project, we downloaded EUR/USD exchange rate data spanning from January 1, 2024, to October 20, 2024. This dataset will be utilized for testing the performance of our selected GARCH(1,1) model.
 
-![Screenshot (247)](https://github.com/user-attachments/assets/f5e16e79-f784-4061-973b-3bc324c6ffc2)
+![Testing Data](https://github.com/Rohan812/GARCH-Volatility-Modelling-for-EUR-USD-Exchange-Rate/blob/main/Testing%20Data.png)
+
 
 ## Volatility Prediction
 
@@ -142,7 +144,7 @@ We have predicted the volatility for the testing data and compared it with the a
 
 ### Comparison of Predicted and Actual Volatility
 
-![newplot (5)](https://github.com/user-attachments/assets/5bfba38f-3a67-4c4f-bfdc-0abc18ba6d0c)
+![Predicted vs Actual Volatility](https://github.com/Rohan812/GARCH-Volatility-Modelling-for-EUR-USD-Exchange-Rate/blob/main/Predicted%20vs%20Actual%20Volatility.png)
 
 This plot allows us to assess the accuracy of the GARCH(1,1) model's volatility predictions against the actual market volatility observed during the testing period.
 
