@@ -81,22 +81,68 @@ The Generalized Autoregressive Conditional Heteroskedasticity (GARCH) model is a
 
 The GARCH(p, q) model is defined by the following equations:
 
-1. **Return Equation:**
-   r_t = μ + ε_t
+![Untitled design](https://github.com/user-attachments/assets/b309bfc7-ed51-41d1-8295-f1b8d641a4b6)
 
-2. **Conditional Variance Equation:**
-   σ_t² = α₀ + Σ (from i=1 to p) α_i ε_{t-i}² + Σ (from j=1 to q) β_j σ_{t-j}²
 
-Where:
-- r_t is the return at time t,
-- μ is the mean of the returns,
-- ε_t is the error term (residual) at time t,
-- σ_t² is the conditional variance at time t,
-- α₀ is a constant term,
-- α_i are the coefficients for the lagged squared residuals (error terms),
-- β_j are the coefficients for the lagged conditional variances,
-- p is the order of the GARCH term (number of lagged variances),
-- q is the order of the ARCH term (number of lagged errors).
+### Model Fitting and Evaluation (AIC & BIC)
 
-This model provides a framework for capturing the dynamics of volatility in financial markets, making it a fundamental tool in econometrics and finance.
+To determine the optimal GARCH model for our data, we tested various combinations of \( p \) (GARCH terms) and \( q \) (ARCH terms). Each model was evaluated using the Akaike Information Criterion (AIC) and the Bayesian Information Criterion (BIC), which assess model quality while penalizing for complexity. Lower AIC and BIC values indicate a more suitable model fit, balancing accuracy with simplicity.
+
+### Model Selection Using AIC
+
+To identify the optimal GARCH model, we evaluated various combinations of \( p \) (GARCH terms) and \( q \) (ARCH terms) using the Akaike Information Criterion (AIC). The AIC penalizes model complexity to prevent overfitting, with lower values indicating a better fit. A line plot of AIC values across different combinations of \( p \) and \( q \) provides insight into the model that best balances accuracy with simplicity.
+
+![newplot (3)](https://github.com/user-attachments/assets/2fd0dbb1-0576-4945-8219-875d3a35f9d7)
+
+From the AIC plot, it is evident that the GARCH(1,1) model yields the minimum AIC value, suggesting that it is the optimal model among the configurations tested.
+
+### Model Selection Using BIC
+
+Similarly, we calculated the Bayesian Information Criterion (BIC) for each \( p \) and \( q \) combination to further guide model selection. The BIC imposes a stronger penalty for model complexity than AIC, and thus may favor simpler models. By analyzing the line plot of BIC values, we can determine the combination of \( p \) and \( q \) that yields the most parsimonious model.
+
+![newplot (4)](https://github.com/user-attachments/assets/9ac3f589-cfdf-4c9c-9c81-c87773794a2d)
+
+The BIC plot shows that the GARCH(1,1) model also achieves the lowest BIC value, confirming it as the best fit for our data.
+
+## GARCH(1,1) Model Equation
+
+![Untitled design (1)](https://github.com/user-attachments/assets/c16f87d1-48a6-43cb-bc02-7a922685b3cd)
+
+## Likelihood Ratio Test for Model Comparison
+
+Since the AIC and BIC values for the GARCH(1,1) and GARCH(1,3) models are very close, we will perform a Likelihood Ratio (LR) test to statistically assess whether the difference in model fit is significant. This will help determine if the GARCH(1,3) model is statistically better than the GARCH(1,1) model.
+
+### Hypotheses
+- **Null Hypothesis (H0)**: The GARCH(1,1) model is adequate; the GARCH(1,3) model does not provide a significantly better fit.
+- **Alternative Hypothesis (H1)**: The GARCH(1,3) model provides a significantly better fit than the GARCH(1,1) model.
+
+### LR Test Formula
+The Likelihood Ratio test statistic is calculated as follows:
+
+LR = -2 * (log L(GARCH(1,1)) - log L(GARCH(1,3)))
+
+where log L represents the log-likelihood of the respective models.
+
+### Likelihood Ratio Test Results
+
+After performing the Likelihood Ratio test, we found that the LR statistic is not significant, as it is greater than the critical value from the chi-squared distribution. Therefore, we fail to reject the null hypothesis.
+
+### Conclusion
+Since the GARCH(1,1) model is deemed adequate, it suggests that the GARCH(1,3) model does not provide a statistically significant improvement in fit over the GARCH(1,1) model. This result supports our earlier analysis that the GARCH(1,1) model is the optimal choice for modeling the volatility of the Eurodollar exchange rate in this context.
+
+## Testing Data
+
+For this project, we downloaded EUR/USD exchange rate data spanning from January 1, 2024, to October 20, 2024. This dataset will be utilized for testing the performance of our selected GARCH(1,1) model.
+
+![Screenshot (247)](https://github.com/user-attachments/assets/f5e16e79-f784-4061-973b-3bc324c6ffc2)
+
+## Volatility Prediction
+
+We have predicted the volatility for the testing data and compared it with the actual volatility values. The results are visualized in the line plot below, which illustrates the predicted and actual volatility over the testing period.
+
+### Comparison of Predicted and Actual Volatility
+
+![newplot (5)](https://github.com/user-attachments/assets/5bfba38f-3a67-4c4f-bfdc-0abc18ba6d0c)
+
+This plot allows us to assess the accuracy of the GARCH(1,1) model's volatility predictions against the actual market volatility observed during the testing period.
 
